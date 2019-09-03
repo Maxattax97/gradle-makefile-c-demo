@@ -1,0 +1,2 @@
+gcc -fPIC -c main.c -o sugar.o
+/home/max/src/gradle-makefile-c-demo/Sugar/Makefile:4: recipe for target 'sugar.o' failed

@@ -1,0 +1,2 @@
+mkdir -p /home/max/src/gradle-makefile-c-demo/Eggs/build/install/eggs/linux_x86-64
+cp eggs.a eggs.so eggs /home/max/src/gradle-makefile-c-demo/Eggs/build/install/eggs/linux_x86-64

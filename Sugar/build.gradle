@@ -1,0 +1,57 @@
+// vim:ft=groovy
+apply plugin: 'c'
+
+apply plugin: 'com.cisco.external-build'
+
+buildscript {
+    repositories {
+       mavenCentral()
+       mavenLocal()
+       jcenter()
+    }
+
+    dependencies {
+        classpath group: 'com.cisco.gradle', name: 'external-build', version: '1.15'
+    }
+}
+
+import com.cisco.gradle.externalbuild.ExternalNativeLibrarySpec
+import com.cisco.gradle.externalbuild.ExternalNativeExecutableSpec
+import com.cisco.gradle.externalbuild.tasks.GnuMake
+
+def getIntermediateDir = { binary ->
+    file("${buildDir}/external-build/${binary.component.name}/${binary.targetPlatform.name}")
+}
+
+def getInstallDir = { binary ->
+    file("${buildDir}/install/${binary.component.name}/${binary.targetPlatform.name}")
+}
+
+model {
+    components {
+        sugar(ExternalNativeExecutableSpec) {
+            buildConfig(GnuMake) {
+                def intDir = getIntermediateDir(binary)
+
+                // Uncomment for easier debugging
+                redirectOutput = false
+
+                makefile 'Makefile'
+                targets 'all'
+
+                inputs.dir '.'
+                inputs.file 'Makefile'
+                //outputs.dir '.'
+
+                workingDir intDir
+                environment = [
+                    'PATH': toolChainPath,
+                ]
+            }
+
+            buildOutput {
+                outputFile = file("./sugar")
+            }
+        }
+    }
+}

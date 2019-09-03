@@ -1,0 +1,4 @@
+gcc -I /home/max/src/gradle-makefile-c-demo/Eggs//include -fPIC -c -o eggs.o /home/max/src/gradle-makefile-c-demo/Eggs//src/eggs.c
+gcc -o eggs.a eggs.o
+gcc -o eggs.so eggs.o
+gcc -o eggs eggs.o
