@@ -36,12 +36,14 @@ model {
                 // Uncomment for easier debugging
                 redirectOutput = false
 
-                makefile 'Makefile'
+                makefile 'folder/Makefile'
                 targets 'all'
 
-                inputs.dir '.'
-                inputs.file 'Makefile'
-                //outputs.dir '.'
+
+                inputs.dir 'folder'
+                //inputs.file './main.h'
+                //inputs.file 'folder/Makefile'
+                outputs.dir 'dest'
 
                 workingDir intDir
                 environment = [
@@ -50,7 +52,7 @@ model {
             }
 
             buildOutput {
-                outputFile = file("./sugar")
+                outputFile = file("sugar")
             }
         }
     }

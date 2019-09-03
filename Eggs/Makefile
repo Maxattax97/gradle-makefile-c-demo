@@ -25,6 +25,8 @@ OBJECTS := eggs.o
 all: $(OUTPUT)
 
 install: $(OUTPUT)
+	echo "HERE $(EXTERNAL_INCLUDES)"
+	echo "QUICK BROWN FOX $(EXTERNAL_LIBRARIES)"
 	mkdir -p $(OUTPUT_DIR)
 	cp $(OUTPUT) $(OUTPUT_DIR)
 

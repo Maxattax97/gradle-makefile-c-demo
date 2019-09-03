@@ -29,7 +29,7 @@ def getInstallDir = { binary ->
 
 model {
     components {
-        eggs(ExternalNativeExecutableSpec) {
+        eggs(ExternalNativeLibrarySpec) {
             buildConfig(GnuMake) {
                 def intDir = getIntermediateDir(binary)
                 def outputDir = getInstallDir(binary)
@@ -40,8 +40,8 @@ model {
                 makefile 'Makefile'
                 targets 'all', 'install'
 
-                inputs.dir 'src'
-                inputs.file 'Makefile'
+                //inputs.dir 'src'
+                //inputs.file 'Makefile'
 
                 outputs.dir outputDir
 
@@ -49,12 +49,19 @@ model {
                 environment = [
                     'PATH': toolChainPath,
                     'OUTPUT_DIR': outputDir,
+                    'EXTERNAL_LIBRARIES': requiredLibraries.join(' '),
+                    'EXTERNAL_INCLUDES': requiredIncludes.join(' '),
                 ]
             }
 
             buildOutput {
                 def outputDir = getInstallDir(binary)
-                outputFile = file("${outputDir}/eggs")
+                outputFile = file("${outputDir}/eggs.so")
+                outputFile = file("${outputDir}/eggs.a")
+
+                exportedHeaders {
+                    srcDir "${outputDir}/include"
+                }
             }
         }
     }

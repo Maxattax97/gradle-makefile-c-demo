@@ -1,6 +1,8 @@
 all: sugar.a sugar.so sugar
 
 sugar.o:
+	pwd
+	ls
 	gcc -fPIC -c main.c -o sugar.o
 
 sugar.a: sugar.o

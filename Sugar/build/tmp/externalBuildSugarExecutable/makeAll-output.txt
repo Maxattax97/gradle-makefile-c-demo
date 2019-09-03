@@ -1,2 +1,5 @@
+pwd
+/home/max/src/gradle-makefile-c-demo/Sugar/build/external-build/sugar/linux_x86-64
+ls
 gcc -fPIC -c main.c -o sugar.o
-/home/max/src/gradle-makefile-c-demo/Sugar/Makefile:4: recipe for target 'sugar.o' failed
+/home/max/src/gradle-makefile-c-demo/Sugar/folder/Makefile:4: recipe for target 'sugar.o' failed
