@@ -1,0 +1,26 @@
+// vim:ft=groovy
+apply plugin: 'c'
+apply plugin: 'cpp-application'
+
+buildscript {
+    repositories {
+       mavenCentral()
+       mavenLocal()
+       jcenter()
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+application {
+    dependencies {
+        implementation 'com.maxocull:flour:3.4.2'
+    }
+
+    source.from file('src')
+    //targetMachines.add(machines.linux.x86_64)
+}

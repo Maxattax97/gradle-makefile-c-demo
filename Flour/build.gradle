@@ -1,0 +1,28 @@
+// vim:ft=groovy
+apply plugin: 'c'
+apply plugin: 'cpp-library'
+apply plugin: 'maven-publish'
+
+group = 'com.maxocull'
+version = '3.4.2'
+description = 'Some flour to make a cake with'
+
+buildscript {
+    repositories {
+       mavenLocal()
+       mavenCentral()
+       jcenter()
+    }
+}
+
+repositories {
+    mavenLocal()
+}
+
+library {
+    //source.from file('src')
+    //privateHeaders.from file('src')
+    //publicHeaders.from file('include')
+    //targetMachines.add(machines.linux.x86_64)
+    linkage = [Linkage.STATIC, Linkage.SHARED]
+}
