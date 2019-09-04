@@ -1,12 +1,12 @@
 // vim:ft=groovy
-apply plugin: 'c'
-
+//apply plugin: 'c'
 apply plugin: 'com.cisco.external-build'
+apply plugin: 'maven-publish'
 
 buildscript {
     repositories {
-       mavenCentral()
        mavenLocal()
+       mavenCentral()
        jcenter()
     }
 
@@ -14,6 +14,14 @@ buildscript {
         classpath group: 'com.cisco.gradle', name: 'external-build', version: '1.15'
     }
 }
+
+repositories {
+    mavenLocal()
+}
+
+group = 'com.maxocull'
+version = '0.0.2'
+description = 'Some farm fresh eggs to make a cake with'
 
 import com.cisco.gradle.externalbuild.ExternalNativeLibrarySpec
 import com.cisco.gradle.externalbuild.ExternalNativeExecutableSpec
@@ -40,8 +48,9 @@ model {
                 makefile 'Makefile'
                 targets 'all', 'install'
 
-                //inputs.dir 'src'
-                //inputs.file 'Makefile'
+                requiredIncludes.add('include/eggs.h')
+                inputs.dir 'src'
+                inputs.file 'Makefile'
 
                 outputs.dir outputDir
 
@@ -57,10 +66,10 @@ model {
             buildOutput {
                 def outputDir = getInstallDir(binary)
                 outputFile = file("${outputDir}/eggs.so")
-                outputFile = file("${outputDir}/eggs.a")
+                //outputFile = file("${outputDir}/eggs.a")
 
                 exportedHeaders {
-                    srcDir "${outputDir}/include"
+                    srcDir "include"
                 }
             }
         }

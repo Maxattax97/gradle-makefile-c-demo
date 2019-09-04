@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "cake.h"
-//#include "eggs.h"
+#include "eggs.h"
 //#include "sugar.h"
 #include "flour.h"
 
 int main() {
-    //crack_eggs();
-    //add_eggs();
+    crack_eggs();
+    add_eggs();
     pour_flour();
     //add_sugar();
     bake();
